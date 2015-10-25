@@ -6,3 +6,6 @@
 ehthumbs.db
 Thumbs.db
 include/enums.php
+*.swp
+*.swo
+.idea
