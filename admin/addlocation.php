@@ -13,17 +13,35 @@
       echo $mysqli->connect_error;
       exit;
     }
-    
+
     $name = clean($mysqli, $_POST['name']);
     $address = clean($mysqli, $_POST['address']);
     $description = clean($mysqli, $_POST['description']);
     $type = clean($mysqli, $_POST['type']);
 
+    $mapsKey = 'AIzaSyAajKffYs0dt0gpNTMXxZYdsDItvpYI1sQ';
+    $jsonAddress = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address=' . urlencode($address) . '&key=' . $mapsKey);
+    $objAddress = json_decode($jsonAddress, TRUE);
+    $addressParts = $objAddress['results'][0]['address_components'];
+    $geoParts['lat'] = $objAddress['results'][0]['geometry']['location']['lat'];
+    $geoParts['lng'] = $objAddress['results'][0]['geometry']['location']['lng'];
+    $addressState = '';
+    $addressCity = '';
+    foreach ($addressParts as $part){
+        if ($part['types'][0] == 'administrative_area_level_1'){
+            $addressState = $part['short_name'];
+        } else if ($part['types'][0] == 'locality'){
+            $addressCity = $part['long_name'];
+        }
+    }
+
   //Insert new location
-  $sql = "INSERT INTO `resteraunts` (`id`, `name`, `address`, `description`, `type`, `lon`, `lat`) VALUES (NULL, '$name', '$address', '$description', '$type', '0', '0');"; 
+  $sql = "INSERT INTO `resteraunts` (`id`, `name`, `address`, `description`, `type`, `lon`, `lat`, `city`, `state`) VALUES (NULL, '$name', '$address', '$description', '$type', '{$geoParts['lng']}', '{$geoParts['lat']}', '$addressCity', '$addressState');"; 
     $result = $mysqli->query($sql);
+    echo $sql;
+    exit;
   //Redirect to /admin/index.php
-  header('Location: /admin/index.php?added=location');
+//  header('Location: /admin/index.php?added=location');
   }
   
   include('../include/header.php');

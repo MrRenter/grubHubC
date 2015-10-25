@@ -41,6 +41,7 @@
             </ul>
             <ul class="nav nav-sidebar">
                 <li><a href="/admin/addlocation.php">Add Location</a></li>
+                <li><a href="/admin/viewlocation.php">View Location</a></li>
                 <li><a href="">Edit Location</a></li>
                 <li><a href="">Remove Location</a></li>
             </ul>

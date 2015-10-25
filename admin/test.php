@@ -6,7 +6,7 @@ if (empty($_GET['address'])){
     echo '<h1>Field Cannot be empty</h1>';
 } else {
 
-    $conn = new mysqli('localhost', 'root', 'g3n3s33b33r', 'grubHubC');
+    $conn = new mysqli('localhost', 'root', 'root', 'grubHubC');
 
     if ($conn->connect_error) {
         die('Could not connect: ' . $conn->connect_error);
