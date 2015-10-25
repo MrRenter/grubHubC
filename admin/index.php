@@ -40,7 +40,7 @@
             <table class="table table-striped" data-toggle="table" data-search="true" data-sort-name="Name" data-sort-order="asc">
               <thead>
                 <tr>
-                  <th>ID</th>
+                  <th></th>
                   <th data-sortable="true">Name</th>
                   <th>Description</th>
                   <th data-sortable="true">City</th>
@@ -60,7 +60,8 @@
   $result = $mysqli->query($sql);
   if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-      echo "<tr><td><a href='/admin/viewlocation.php?id=" . $row['id'] . "'>" . $row['id'] . "</a></td>";
+      echo "<tr><td><center><a href='/admin/viewlocation.php?id=" . $row['id'] . "'><img height='24' width='24' src='/assets/info.png' alt='view'></a> 
+      <a href='/admin/editlocation.php?id=" . $row['id'] . "'><img height='24' width='24' src='/assets/edit.png' alt='view'></a></center></td>";
       echo "<td>" . $row['name'] . "</td>";
       echo "<td>" . substr($row['description'], 0, 30) . "</td>";
       echo "<td>" . $row['city'] . "</td>";

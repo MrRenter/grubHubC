@@ -33,16 +33,15 @@
                 <li><a href="#">Export</a></li>
             </ul>
             <ul class="nav nav-sidebar">
+                <li><a href="/admin/addlocation.php">Add Location</a></li>
+                <li><a href="/admin/viewlocation.php">View Location</a></li>
+                <li><a href="/">Remove Location</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
                 <li><a href="">Edit Information</a></li>
                 <li><a href="">Edit Menu</a></li>
                 <li><a href="">One more nav</a></li>
                 <li><a href="">Another nav item</a></li>
                 <li><a href="">More navigation</a></li>
-            </ul>
-            <ul class="nav nav-sidebar">
-                <li><a href="/admin/addlocation.php">Add Location</a></li>
-                <li><a href="/admin/viewlocation.php">View Location</a></li>
-                <li><a href="">Edit Location</a></li>
-                <li><a href="">Remove Location</a></li>
             </ul>
         </div>
