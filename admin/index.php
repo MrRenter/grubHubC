@@ -3,6 +3,10 @@
     include('../include/dashboardNavbar.php');
     include('../include/enum.php');
 ?>
+<script src="/js/jquery.min.js"></script>
+<link rel="stylesheet" href="../css/bootstrap-table.min.css">
+<script src="../js/bootstrap-table.min.js"></script>
+<script src="../js/bootstrap-table-en-US.js"></script>
 <link href="/css/dashboard.css" rel="stylesheet">
 
           <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -31,16 +35,16 @@
             </div>
           </div>
 
-          <h2 class="sub-header">Section title</h2>
+          <h2 class="sub-header">Avaliable Locations</h2>
           <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-striped" data-toggle="table" data-search="true" data-sort-name="Name" data-sort-order="asc">
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Name</th>
+                  <th data-sortable="true">Name</th>
                   <th>Description</th>
-                  <th>City</th>
-                  <th>State</th>
+                  <th data-sortable="true">City</th>
+                  <th data-sortable="true">State</th>
                 </tr>
               </thead>
               <tbody>
@@ -56,13 +60,12 @@
   $result = $mysqli->query($sql);
   if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-      echo "<tr>";
-      echo "<td>" . $row['id'] . "</td>";
-      echo "<td><a href='/admin/viewlocation.php?id=" . $row['id'] . "'>" . $row['name'] . "</a></td>";
+      echo "<tr><td><a href='/admin/viewlocation.php?id=" . $row['id'] . "'>" . $row['id'] . "</a></td>";
+      echo "<td>" . $row['name'] . "</td>";
       echo "<td>" . substr($row['description'], 0, 15) . "</td>";
       echo "<td>" . $row['city'] . "</td>";
       echo "<td>" . $row['state'] . "</td>";
-      echo "</tr>";
+      echo "</tr></a>";
     }
   } else {
     echo "Found 0 results";
