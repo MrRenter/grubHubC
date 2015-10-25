@@ -62,7 +62,7 @@
     while($row = $result->fetch_assoc()) {
       echo "<tr><td><a href='/admin/viewlocation.php?id=" . $row['id'] . "'>" . $row['id'] . "</a></td>";
       echo "<td>" . $row['name'] . "</td>";
-      echo "<td>" . substr($row['description'], 0, 15) . "</td>";
+      echo "<td>" . substr($row['description'], 0, 30) . "</td>";
       echo "<td>" . $row['city'] . "</td>";
       echo "<td>" . $row['state'] . "</td>";
       echo "</tr></a>";

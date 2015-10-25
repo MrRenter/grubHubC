@@ -37,7 +37,6 @@
   //Insert new location
   $sql = "INSERT INTO `resteraunts` (`id`, `name`, `address`, `description`, `type`, `lon`, `lat`, `city`, `state`) VALUES (NULL, '$name', '$address', '$description', '$type', '{$geoParts['lng']}', '{$geoParts['lat']}', '$addressCity', '$addressState');"; 
     $result = $mysqli->query($sql);
-    echo $sql;
   //Redirect to /admin/index.php
     header('Location: /admin/index.php?added=location');
   }
@@ -75,10 +74,23 @@
 	  <label for="">Type:</label>
 	  <div class="input-group">
 	    <select name="type" class="form-control" width="40">
-	      <option value="0">Pizzaria</option>
-	      <option value="1">Grill</option>
-	      <option value="2">Deli</option>
-	      <option value="3">Resteraunt</option>
+          <option value="0">None</option>
+<?php
+
+    $mysqli = new mysqli($dbIp, $dbUser, $dbPass, $dbDb);
+    if ($mysqli->connect_errno){
+      echo "Error connecting to database";
+      echo $mysqli->connect_error;
+      exit;
+    }
+    $sql = "SELECT * FROM `resType`";
+      $result = $mysqli->query($sql);
+      if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+          echo "<option value=" . $row['ID'] . ">" . $row['type'] . "</option>";
+            }
+      }
+?>
 	    </select>	
         </div>
 	<br>	

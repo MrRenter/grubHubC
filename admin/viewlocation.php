@@ -25,12 +25,24 @@
       $type = $row['type'];
       $city = $row['city'];
       $state = $row['state'];
-      echo $name;
     } else {
-      echo "Error finding listing";
+      header("Location: /admin/index.php");
     }
   } else {
     header("Location: /admin/index.php");
+  }
+echo $type;
+  if (isset($type)){
+    $sql = 'SELECT * FROM resType WHERE ID=' . $type;
+    $result = $mysqli->query($sql);
+    if ($result->num_rows > 0){
+      $row = $result->fetch_assoc();
+      $typeName = $row['type'];
+    } else {
+      $typeName = "None";
+    }
+  } else {
+    $typeName = "None";
   }
 
   include('../include/header.php');
@@ -45,7 +57,7 @@
         <label for="name">Name:</label><br><?php echo $name?><br>
         <label for="address">Address:</label><br><?php echo $address?><br>
         <label for="description">Description:</label><br><?php echo $description?><br>
-        <label for="type">Type:</label><br><?php echo $type?><br>
+        <label for="type">Type:</label><br><?php echo $typeName?><br>
         <label for="city">City:</label><br><?php echo $city?><br>
         <label for="state">State:</label><br><?php echo $state?><br>
     </div>
