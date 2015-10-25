@@ -4,10 +4,10 @@
   function clean($mysql, $toClean){
   return preg_replace('/[^ \w]+/', '', $mysql->real_escape_string($toClean));
   }
-
+  include('../include/enum.php');
   if (isset($_POST['name']) && isset($_POST['address']) && isset($_POST['description']) && isset($_POST['type'])){
   //Connect to mysql
-    $mysqli = new mysqli('127.0.0.1', 'root', 'root', 'grubhubc');
+    $mysqli = new mysqli($dbIp, $dbUser, $dbPass, $dbDb);
     if ($mysqli->connect_errno){
       echo "Error connecting to database";
       echo $mysqli->connect_error;
@@ -19,7 +19,6 @@
     $description = clean($mysqli, $_POST['description']);
     $type = clean($mysqli, $_POST['type']);
 
-    $mapsKey = 'AIzaSyAajKffYs0dt0gpNTMXxZYdsDItvpYI1sQ';
     $jsonAddress = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address=' . urlencode($address) . '&key=' . $mapsKey);
     $objAddress = json_decode($jsonAddress, TRUE);
     $addressParts = $objAddress['results'][0]['address_components'];
