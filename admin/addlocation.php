@@ -58,7 +58,8 @@
 	
 	  <label for="">Address:</label>
 	  <div class="input-group">
-	    <input name="address" type="text" class="form-control" size="40">
+            <input onblur="geocodeAddress()" id="address" name="address" type="text" class="form-control" size="40">
+            <div name="correct" id="correct"></div>
 	  </div>
 
 	  <label for="">Description:</label>
@@ -100,3 +101,28 @@
 </div>
 </div>
 <?php include('../include/footer.php');?>
+
+<script type="text/javascript">
+function no(){
+}
+
+function geocodeAddress() {
+  var geocoder = new google.maps.Geocoder();
+  var address = document.getElementById('address').value;
+  geocoder.geocode({'address': address}, function(results, status) {
+    var pass = false;
+    if (status === google.maps.GeocoderStatus.OK) {
+      pass = "partial_match" in results[0];
+    } else {
+      pass = false;
+    }
+    if (!pass){
+      document.getElementById('correct').innerHTML = "Valid Address";
+    } else {
+      document.getElementById('correct').innerHTML = "Invalid Address";
+    }
+  });
+}
+</script>
+
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key=<?php echo $mapsJavaKey?>&callback=no"></script>
