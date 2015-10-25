@@ -1,6 +1,7 @@
 <?php
     include('../include/header.php');
     include('../include/dashboardNavbar.php');
+
 ?>
 <link href="/css/dashboard.css" rel="stylesheet">
 

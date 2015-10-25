@@ -38,9 +38,8 @@
   $sql = "INSERT INTO `resteraunts` (`id`, `name`, `address`, `description`, `type`, `lon`, `lat`, `city`, `state`) VALUES (NULL, '$name', '$address', '$description', '$type', '{$geoParts['lng']}', '{$geoParts['lat']}', '$addressCity', '$addressState');"; 
     $result = $mysqli->query($sql);
     echo $sql;
-    exit;
   //Redirect to /admin/index.php
-//  header('Location: /admin/index.php?added=location');
+    header('Location: /admin/index.php?added=location');
   }
   
   include('../include/header.php');
