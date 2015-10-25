@@ -31,7 +31,6 @@
   } else {
     header("Location: /admin/index.php");
   }
-echo $type;
   if (isset($type)){
     $sql = 'SELECT * FROM resType WHERE ID=' . $type;
     $result = $mysqli->query($sql);
@@ -54,12 +53,29 @@ echo $type;
     <h1 class="page-header">View Location</h1>
     <div class="col-xs-6 col-sm-6 placeholder">
         <h2 class="sub-header">Resteraunt Information</h2>
-        <label for="name">Name:</label><br><?php echo $name?><br>
-        <label for="address">Address:</label><br><?php echo $address?><br>
-        <label for="description">Description:</label><br><?php echo $description?><br>
-        <label for="type">Type:</label><br><?php echo $typeName?><br>
-        <label for="city">City:</label><br><?php echo $city?><br>
-        <label for="state">State:</label><br><?php echo $state?><br>
+        <table style="table-layout: fixed;" width="100%">
+         <tbody>
+            <tr><td width="350px">
+             <label for="name">Name:</label><br><?php echo $name?><br>
+             <label for="address">Address:</label><br><?php echo $address?><br>
+             <label for="description">Description:</label><br><?php echo $description?><br>
+             <label for="type">Type:</label><br><?php echo $typeName?><br>
+             <label for="city">City:</label><br><?php echo $city?><br>
+             <label for="state">State:</label><br><?php echo $state?><br>
+            </td><td width="600px">
+
+
+<iframe
+    width="600"
+    height="450"
+    frameborder="0" style="border:0"
+    src="https://www.google.com/maps/embed/v1/place?key=<?php echo $mapsJavaKey;?>
+    &q=<?php echo urlencode($address);?>">
+  </iframe>
+</td>
+            </tr>
+        </tbody>
+      </table>
     </div>
 </div>
 <?php
